@@ -1,10 +1,13 @@
 package com.teschglobal.test;
 
-
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -22,15 +25,72 @@ public class Main {
 	public static void main (String... args){
 		Main test = new Main();
 		String url = "http://54.221.173.39:8181/cxf/WSHealthLX/dimhl7";
-		String payloadData = "MSH|^~\\&|hlxClient|TG|HLX|TG|20160712124739-0500||ADT^A01|1468345659-1|P|2.5"
-				+ "EVN|A01|20160712124739-0500||||20160712124739-0500"
-				+ "PID|1|TG1000615|2ijutrf5-4652-0145-7697-193670009385||Hart^Alan||20050310|M||White|711 O'Hara Station|||||||5933615078"
-				+ "PR1|||93451|Right heart cath|20160830101530-0500"
-				+ "PV1|1|E|ER^^|Emergency|||TG1007728^Garrett^Sara|||OBS|||R|8|||TG1007728^Garrett^Sara|||||||||||||||||||||||||||20160712124739-0500||"
-				+ "DG1|1|I9|V72.42|Pregnancy Examination or Test, Positive Result"; 
-		test.connectionPost(url, payloadData, "test", Format.TEXT);
+		
+		/*
+		 * Variable to post
+		 */
+		String payloadData =             "MSH|^~\\*|hlxClient|TG|HLX|TG|20160712124739-0500||ADT^A01|1468345659-1|P|2.5\n"
+	            + "EVN|A01|20160712124739-0500||||20160712124739-0500\n"
+	            + "PID|1|TG1000615|2ijutrf5-4652-0145-7697-193670009385||Hart^Alan||20050310|M||White|711 O'Hara Station|||||||5933615078\n"
+	            + "PR1|||93451|Right heart cath|20160830101530-0500\n"
+	            + "PV1|1|E|ER^^|Emergency|||TG1007728^GARRET^SARA|||OBS|||R|8|||TG1007728^GARRET^SARA|||||||||||||||||||||||||||20160712124739-0500||\n"
+	            + "DG1|1|I9|V72.42|Pregnancy Examination or Test, Positive Result\n";
+ 
+//				"MSH|^~\\&|hlxClient|TG|HLX|TG|20160712124739-0500||ADT^A01|1468345659-1|P|2.5\n"
+//				+ "EVN|A01|20160712124739-0500||||20160712124739-0500\n"
+//				+ "PID|1|TG1000615|2ijutrf5-4652-0145-7697-193670009385||Hart^Alan||20050310|M||White|711 O'Hara Station|||||||5933615078\n"
+//				+ "PR1|||93451|Right heart cath|20160830101530-0500\n"
+//				+ "PV1|1|E|ER^^|Emergency|||TG1007728^Garrett^Sara|||OBS|||R|8|||TG1007728^Garrett^Sara|||||||||||||||||||||||||||20160712124739-0500||\n"
+//				+ "DG1|1|I9|V72.42|Pregnancy Examination or Test, Positive Result\n";
+		
+		/*
+		 * Format is the form of how data is posted
+		 */
+		try {
+			test.connectionPost(url, payloadData, "test", Format.TEXT);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
+	private void sendPost(String url, String payloadData, String methodName, Format format) throws Exception {
+
+		URL obj = new URL(url);
+		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+
+		//add reuqest header
+		con.setRequestMethod("POST");
+//		con.setRequestProperty("User-Agent", USER_AGENT);
+		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+		String urlParameters = payloadData;//"sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
+
+		// Send post request
+		con.setDoOutput(true);
+		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+		wr.writeBytes(urlParameters);
+		wr.flush();
+		wr.close();
+
+		int responseCode = con.getResponseCode();
+		System.out.println("\nSending 'POST' request to URL : " + url);
+		System.out.println("Post parameters : " + urlParameters);
+		System.out.println("Response Code : " + responseCode);
+
+		BufferedReader in = new BufferedReader(
+		        new InputStreamReader(con.getInputStream()));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+
+		//print result
+		System.out.println(response.toString());
+
+	}	
 	/**
 	 * Method to do connection according: url, payloadData and method name <br>
 	 * <ul>
@@ -54,7 +114,8 @@ public class Main {
 
 		try {
 			// Building body to send it as request on post method
-			StringEntity params = new StringEntity(payloadData, "UTF-8");
+			String parameters = "hl7Message="+payloadData+"&securityToken=fdsaf";
+			StringEntity params = new StringEntity(parameters, "UTF-8");
 			params.setContentType(format.getName());
 			post.addHeader("content-type", format.getName());
 			post.addHeader("Accept", "*/*");
