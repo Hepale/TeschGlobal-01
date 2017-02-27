@@ -65,7 +65,7 @@ public class Main {
 			// Calling by post method to URL defined
 			responseHttp = httpClient.execute(post);
 			int responseCode = responseHttp.getStatusLine().getStatusCode();
-			System.out.println("------ STOP> ../trucare/api/ " + methodName + " with responseCode: " + responseCode);
+			System.out.println("------ STOP> " + methodName + " with responseCode: " + responseCode);
 			org.apache.http.HttpEntity entity = responseHttp.getEntity();
 
 			responseStringBuilder = convertInputStreamToStringBuilder(entity.getContent());
