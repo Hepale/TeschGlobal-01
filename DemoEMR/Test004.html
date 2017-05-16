@@ -1,0 +1,23 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/Style.css">
+	<script type="text/javascript" src="vendor/jquery/jquery-1.10.2.min.js"></script>
+    <link href="vendor/bootstrap/DatePicker/bootstrap-datepicker.css" rel="stylesheet" />
+	<script src="vendor/bootstrap/DatePicker/bootstrap-datepicker.js"></script>
+	
+	<title> Test DatePicker </title>
+</head>
+<body>
+
+<div>Click textbox to open datetime picker: <input type="text" id="fromDate" class="datepicker" /></div>
+
+
+<script>
+    $(document).ready(function () {
+        $(".datepicker").datepicker({ format: 'yyyy/mm/dd', autoclose: true, todayBtn: 'linked' })
+    });
+</script>
+	
+</body>
+</html>

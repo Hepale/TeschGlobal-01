@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Casenet Hospital EMR</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/emr_demo.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- DatePicker classes -->
+	<script type="text/javascript" src="vendor/jquery/jquery-1.10.2.min.js"></script>
+    <link href="vendor/bootstrap/DatePicker/bootstrap-datepicker.css" rel="stylesheet" />
+	<script src="vendor/bootstrap/DatePicker/bootstrap-datepicker.js"></script>
+	
+</head>
+<body id="page-top" class="index">
+
+	<div  class="form-group col-xs-2 floating-label-form-group controls">Click textbox to open datetime picker: <input type="text" id="dob" class="datepicker" /></div>	
+	
+	
+    <section id="table-patients" style="display: block">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Date Of Birth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center" id="btn-text">&nbsp;</td>
+                            <td id="id">&nbsp;</td>
+                            <td id="first-name">&nbsp;</td>
+                            <td id="last-name">&nbsp;</td>
+                            <td id="dob">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+        		
+        	</div>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.panel-body -->
+        
+		
+
+    </section>
+
+<div>Click textbox to open datetime picker: <input type="text" id="dob2" class="datepicker" /></div>	        	
+    <div class="modal fade in" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" id="searchModalDialog" role="document">
+            <form name="search" id="searchForm" novalidate>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title" id="searchModal">Patient Search</h5>
+                    </div>
+                    <div class="modal-body">
+	<div class="row control-group">
+		<div  class="form-group col-xs-2 floating-label-form-group controls">Click textbox to open datetime picker: <input type="text" id="dob" class="form-group col-xs-2 floating-label-form-group controls datepicker" /></div>
+	</div>                    
+                    </div>	
+                </div>
+            </form>            
+        </div>
+    </div>
+                   
+                    
+                    
+                    	
+	<script>
+		$(document).ready(function () {
+			$(".datepicker").datepicker({ format: 'yyyy/mm/dd', autoclose: true, todayBtn: 'linked' })
+		});
+	</script>
+	
+    <!-- jQuery >
+    <script src="vendor/jquery/jquery.min.js"></script-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>    
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/emr_demo.js"></script>	
+</body>
+</html>

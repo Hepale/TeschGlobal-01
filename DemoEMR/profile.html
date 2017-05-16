@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Casenet Hospital EMR</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/emr_demo.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html#page-top">Casenet Hospital EMR</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Jane Doe&nbsp;<i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li><a id="admission-link" href="#">Admission</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Appointment</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Billing</a></li>
+                            <li class="divider"></li>
+                            <li><a id="discharge-link" href="#">Discharge</a></li>
+                            <li class="divider"></li>
+                            <li><a id="encounter-details" href="#">Encounter Details</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Referral</a></li>
+                        </ul>
+                        <!-- /.dropdown-messages -->
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <br />
+    <!-- Header -->
+    <header>
+        <div class="container" id="maincontent" tabindex="-1">
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-body darker-blue">
+                            <div class="row" style="display: flex">
+                                <div class="col-md-2 panel-divider">
+                                    <img class="img-responsive" src="img/portrait.jpg" alt="">
+                                    Jane Doe
+                                </div>
+                                <div class="col-md-2 panel-divider">
+                                    DOB: 3/3/59<br/>
+                                    Gender: Femle<br/>
+                                    Race: white<br/>
+                                    PCP: Dr. Jones<br/>
+                                </div>
+                                <div class="col-md-2 panel-divider panel-left">
+                                    Address: 123 Main St<br/>
+                                    &emsp;&emsp;&emsp;&emsp;Bedford, Ma<br/>
+                                    &emsp;&emsp;&emsp;&emsp;01730<br/>
+                                    Home: 617-555-5555<br/>
+                                    Work:  781-555-5555<br/>
+                                    Email: test@test.com<br/>
+                                </div>
+                                <div class="col-md-3 panel-divider panel-left">
+                                    Payer: Casenet Insurance&nbsp;<span><button type="button" id="importccd_btn" class="btn btn-default btn-sm">IMPORT CCD+</button></span><br/>
+                                    &emsp;&emsp;36 Crosby Dr<br/>
+                                    &emsp;&emsp;Bedford, MA<br/>
+                                </div>
+                                <div class="col-md-3 panel-left">
+                                    <span style="text-align: left">
+                                        Alerts:
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CCD Section 1 -->
+    <section id="ccd1" style="display: block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="panel panel-info panel-11">
+                                <div class="panel-heading">
+                                    <h5>Allergies</h5>
+                                </div>
+                                <div class="panel-body panel-body-tabs">
+                                    <table id="t-allergies" class="table table-striped table-bordered table-hover">
+                                        <thead id="th-allergies">
+                                            <tr><th id="allergies-head-1">Allergy</th><th id="allergies-head-2">Date</th><th id="allergies-head-3">Reaction</th><th id="allergies-head-4">Severity</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td id="allergies-11">&nbsp;</td><td id="allergies-12">&nbsp;</td><td id="allergies-13">&nbsp;</td><td id="allergies-14">&nbsp;</td></tr>
+                                            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-4 -->
+                        <div class="col-lg-4">
+                            <div class="panel panel-info panel-11">
+                                <div class="panel-heading">
+                                    <h5>Diagnosis</h5>
+                                </div>
+                                <div class="panel-body panel-body-tabs">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr><th id="diagnosis-head-1">Diagnosis Code</th><th id="diagnosis-head-2"> Diagnosis Description</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td id="diagnosis-11">&nbsp;</td><td id="diagnosis-12">&nbsp;</td></tr>
+                                            <tr><td id="diagnosis-21">&nbsp;</td><td id="diagnosis-22">&nbsp;</td></tr>
+                                            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-4 -->
+                        <div class="col-lg-4">
+                            <div class="panel panel-info panel-11">
+                                <div class="panel-heading">
+                                    <h5>Medications</h5>
+                                </div>
+                                <div class="panel-body panel-body-tabs">
+                                    <table class="table table-striped table-bordered table-hover responsive">
+                                        <thead>
+                                            <tr><th id="medications-head-1">Medication</th><th id="medications-head-2">dose</th><th id="medications-head-3">Route</th><th id="medications-head-4">Frequency</th><th id="medications-head-5">Start Date</th><th id="medications-head-6">Prescriber</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td id="medications-11">&nbsp;</td><td id="medications-12">&nbsp;</td><td id="medications-13">&nbsp;</td><td id="medications-14">&nbsp;</td><td id="medications-15">&nbsp;</td><td id="medications-16">&nbsp;</td></tr>
+                                            <tr><td id="medications-21">&nbsp;</td><td id="medications-22">&nbsp;</td><td id="medications-23">&nbsp;</td><td id="medications-24">&nbsp;</td><td id="medications-25">&nbsp;</td><td id="medications-26">&nbsp;</td></tr>
+                                            <tr><td id="medications-31">&nbsp;</td><td id="medications-32">&nbsp;</td><td id="medications-33">&nbsp;</td><td id="medications-34">&nbsp;</td><td id="medications-35">&nbsp;</td><td id="medications-36">&nbsp;</td></tr>
+                                            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-4 -->
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CCD Section 2 -->
+    <section id="ccd2" style="display: block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-info panel-11">
+                                <div class="panel-heading">
+                                    <h5>Results</h5>
+                                </div>
+                                <div class="panel-body panel-body-tabs">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr><th id="results-head-1">Name</th><th id="results-head-2">Date</th><th id="results-head-3">Value</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td id="results-11">&nbsp;</td><td id="results-12">&nbsp;</td><td id="results-13">&nbsp;</td></tr>
+                                            <tr><td id="results-21">&nbsp;</td><td id="results-22">&nbsp;</td><td id="results-23">&nbsp;</td></tr>
+                                            <tr><td id="results-31">&nbsp;</td><td id="results-32">&nbsp;</td><td id="results-33">&nbsp;</td></tr>
+                                            <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-6 -->
+                        <div class="col-lg-6">
+                            <div class="panel panel-info panel-11">
+                                <div class="panel-heading">
+                                    <h5>Care Plan</h5>
+                                </div>
+                                <div class="panel-body panel-body-tabs">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr><th id="careplan-head-1">Care Plan</th><th id="careplan-head-2">Problems</th><th id="careplan-head-3">Goals</th><th id="careplan-head-4">Interventions</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td id="careplans-01">&nbsp;</td><td id="careplans-02">&nbsp;</td><td id="careplans-03">&nbsp;</td><td id="careplans-04">&nbsp;</td></tr>
+                                            <tr><td id="careplans-11">&nbsp;</td><td id="careplans-12">&nbsp;</td><td id="careplans-13">&nbsp;</td><td id="careplans-14">&nbsp;</td></tr>
+                                            <tr><td id="careplans-21">&nbsp;</td><td id="careplans-22">&nbsp;</td><td id="careplans-23">&nbsp;</td><td id="careplans-24">&nbsp;</td></tr>
+                                            <tr><td id="careplans-31">&nbsp;</td><td id="careplans-32">&nbsp;</td><td id="careplans-33">&nbsp;</td><td id="careplans-34">&nbsp;</td></tr>
+                                            <tr><td id="careplans-41">&nbsp;</td><td id="careplans-42">&nbsp;</td><td id="careplans-43">&nbsp;</td><td id="careplans-44">&nbsp;</td></tr>
+                                            <tr><td id="careplans-51">&nbsp;</td><td id="careplans-52">&nbsp;</td><td id="careplans-53">&nbsp;</td><td id="careplans-54">&nbsp;</td></tr>
+                                            <tr><td id="careplans-61">&nbsp;</td><td id="careplans-63">&nbsp;</td><td id="careplans-63">&nbsp;</td><td id="careplans-64">&nbsp;</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panel Admission Section -->
+    <section id="admission-panel" style="display: none">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form>
+                        <div class="panel panel-info">
+                            <div class="panel-body lighter-blue">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Admit Date/Time:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="datepicker" placeholder="" id="admit_dt" > 
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Discharge Date/Time:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="discharge_dt" > 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Urgency:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="urgency" > 
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Department:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="department" > 
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Room:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="room" > 
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Bed:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="bed" > 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Admission type:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="admission-type" > 
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Hospital Service:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="hospital-service" > 
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Admit Source:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="admit-source" > 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Attending Physician:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="att-phys" > 
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Referring Physician:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="ref-phys" > 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Diagnosis:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="diagnosis" > 
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" id="search1_btn" class="btn btn-success btn-sm">SEARCH</button>
+                                    </div>
+                                    <div class="col-lg-1 col-md-offset-1">
+                                        <label class="label-form-group">Procedure:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="ref-phys" > 
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" id="search2_btn" class="btn btn-success btn-sm">SEARCH</button>
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-2">
+                                        <button type="button" id="submit_btn" class="btn btn-default btn-sm" data-toggle="modal" data-target="#casenetModal">SUBMIT</button>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" id="cancel_btn" class="btn btn-warning btn-sm">CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panel Encounter Details Section -->
+    <section id="encounters-panel" style="display: none">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form>
+                        <div class="panel panel-info">
+                            <div class="panel-body lighter-blue">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <label class="label-form-group">Encounter Date/Time:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="encounter_dt" > 
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="label-form-group">Type:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="type" > 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-2">
+                                        <label class="label-form-group">Department:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="department" > 
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="label-form-group">Care Team:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="care-team" > 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Description:</label>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <textarea style="width: 100%" rows=12>
+                                        </textarea> 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-2">
+                                        <button type="button" id="submit_btn_encounter" class="btn btn-default btn-sm" data-toggle="modal" data-target="#encountersModal">SUBMIT</button>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" id="cancel_btn_encounter" class="btn btn-warning btn-sm">CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panel Discharge Section -->
+    <section id="discharge-panel" style="display: none">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form>
+                        <div class="panel panel-info">
+                            <div class="panel-body lighter-blue">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <label class="label-form-group">Discharge Date/Time:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="encounter_dt" > 
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="label-form-group">Discharge Disposition:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="type" > 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-2">
+                                        <label class="label-form-group">Discharge Status:</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" class="form-control" placeholder="" id="department" > 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-1">
+                                        <label class="label-form-group">Description:</label>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <textarea style="width: 100%" rows=12>
+                                        </textarea> 
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-lg-2">
+                                        <button type="button" id="submit_btn_discharge" class="btn btn-default btn-sm" data-toggle="modal" data-target="#casenetModal">SUBMIT</button>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" id="cancel_btn_discharge" class="btn btn-warning btn-sm">CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" id="importModalDialog" role="document">
+            <div class="modal-content" style="max-height: 85%; height: 55%">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row spacer">
+                        <div class="col-lg-11" style="margin-left: 20px; padding: 10px;">
+                            <pre id="ccda_xml" style="height: 450px; overflow-y: scroll;"></pre>
+                        </div>
+                    </div>
+                    <div class="row spacer">
+                        <div class="col-lg-1 col-md-offset-10">
+                            <button id="import-close-btn" type="button" class="btn btn-primary" data-dismiss="modal">Import</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="encountersModal" tabindex="-1" role="dialog" aria-labelledby="encountersModal" aria-hidden="true">
+        <div class="modal-dialog" id="encountersModalDialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row spacer">
+                        <div class="col-lg-11" style="margin-left: 20px; padding: 10px; border: 1px solid #000">
+                            <span>Sending Encounter Details to Casenet</span>
+                            <pre>
+CCDA
+&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;?xml-stylesheet type='text/xsl' href='CECDocDisplay.xsl'?&gt;
+&lt;ClinicalDocument xmlns="urn:hl7-org:v3"&gt;    
+&lt;realmCode code="US"/&gt;    
+&lt;typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/&gt;    
+&lt;templateId root="1.2.840.114350.1.72.1.51693"/&gt;    
+&lt;templateId root="2.16.840.1.113883.10.20.22.1.1"/&gt;    
+&lt;templateId root="2.16.840.1.113883.10.20.22.1.2"/&gt;    
+&lt;id assigningAuthorityName="EPC" root="1.2.840.114350.1.13.2.1.7.8.688883.8676"/&gt;    
+&lt;code code="34133-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"        displayName="Summarization of Episode Note"/&gt;    
+&lt;title&gt;Continuity of Care Document&lt;/title&gt;    
+&lt;effectiveTime value="20170209174507-0500"/&gt;    
+&lt;confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/&gt;    
+&lt;languageCode code="en-US"/&gt;    
+&lt;setId assigningAuthorityName="EPC" extension="33d3ee6f-3d64-459d-9816-3ad01822cb93"        root="1.2.840.114350.1.13.2.1.7.1.1"/&gt;    
+&lt;versionNumber value="2"/&gt;    &lt;recordTarget&gt;        &lt;patientRole&gt;            &lt;id root="1.2.840.114350.1.13.2.1.7.5.737384.0" extension="E240921"/&gt;            &lt;addr use="HP"&gt;
+</pre>
+                        </div>
+                    </div>
+                    <div class="row spacer">
+                        <div class="col-lg-1 col-md-offset-10">
+                            <button id="encounter-close-btn" type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="dischargeModal" tabindex="-1" role="dialog" aria-labelledby="dischargeModal" aria-hidden="true">
+        <div class="modal-dialog dialog-lg" id="dischargeModalDialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row spacer">
+                        <div class="col-lg-11" style="margin-left: 20px; padding: 10px; border: 1px solid #000">
+                            <span>Sending Encounter Details to Casenet</span>
+                            <pre>
+CCDA
+&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;?xml-stylesheet type='text/xsl' href='CECDocDisplay.xsl'?&gt;
+&lt;ClinicalDocument xmlns="urn:hl7-org:v3"&gt;    
+&lt;realmCode code="US"/&gt;    
+&lt;typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/&gt;    
+&lt;templateId root="1.2.840.114350.1.72.1.51693"/&gt;    
+&lt;templateId root="2.16.840.1.113883.10.20.22.1.1"/&gt;    
+&lt;templateId root="2.16.840.1.113883.10.20.22.1.2"/&gt;    
+&lt;id assigningAuthorityName="EPC" root="1.2.840.114350.1.13.2.1.7.8.688883.8676"/&gt;    
+&lt;code code="34133-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"        displayName="Summarization of Episode Note"/&gt;    
+&lt;title&gt;Continuity of Care Document&lt;/title&gt;    
+&lt;effectiveTime value="20170209174507-0500"/&gt;    
+&lt;confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/&gt;    
+&lt;languageCode code="en-US"/&gt;    
+&lt;setId assigningAuthorityName="EPC" extension="33d3ee6f-3d64-459d-9816-3ad01822cb93"        root="1.2.840.114350.1.13.2.1.7.1.1"/&gt;    
+&lt;versionNumber value="2"/&gt;    &lt;recordTarget&gt;        &lt;patientRole&gt;            &lt;id root="1.2.840.114350.1.13.2.1.7.5.737384.0" extension="E240921"/&gt;            &lt;addr use="HP"&gt;
+</pre>
+                        </div>
+                    </div>
+                    <div class="row spacer">
+                        <div class="col-lg-1 col-md-offset-10">
+                            <button id="encounter-close-btn" type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="casenetModal" tabindex="-1" role="dialog" aria-labelledby="casenetModal" aria-hidden="true">
+    <div class="modal-dialog dialog-lg" id="casenetModalDialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="casenetModal">Send message to TruCare</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row spacer">
+                    <div class="col-lg-11" style="margin-left: 20px; padding: 10px; border: 1px solid #000">
+                        <span id="a03" style="display:none">
+                            MSH|^~\&||Casenet Hospital^1000849|HLX|TG|||ADT^A01|1485532340445-147|P|2.5<BR/>
+                            EVN|A01|20170523095220-0600|20170518095220-0600|||20170318095220-0600<BR/>
+                            PID|1|TG1000004|||Doe^Jane|||||||||||||<BR/>
+                            PV1|1|U|ER^^|2|||TG1000000^Doe^Jane|1000002^Walker^John||ICU||||4|||TG1000004^Garrett^Sara||||||||||||||||||||||Casenet Hospital|||||20170314155039-0600||<BR/>
+                            PV2||||||||20170314174717-0600|20170318172423-0600||||||||||||||||||<BR/>
+                            DG1|1|I9|E11|Type 2 diabetes with mellitus|<BR/>
+                            PR1|||-||<BR/>
+                            IN1||||||||||||||<BR/>
+                        </span>
+                        <span id="a13" style="display:none">
+                            MSH|^~\&||Casenet Hospital^1000849|HLX|TG|||ADT^A01|1485532340445-147|P|2.5<BR/>
+                            EVN|A01|20170523095220-0600|20170518095220-0600|||20170318095220-0600<BR/>
+                            PID|1|TG1000004|||Doe^Jane|||||||||||||<BR/>
+                            PV1|1|U|ER^^|2|||TG1000000^Doe^Jane|1000002^Walker^John||ICU||||4|||TG1000004^Garrett^Sara||||||||||||||||||||||Casenet Hospital|||||20170314155039-0600||<BR/>
+                            PV2||||||||20170314174717-0600|20170318172423-0600||||||||||||||||||<BR/>
+                            DG1|1|I9|E11|Type 2 diabetes with mellitus|<BR/>
+                            PR1|||-||<BR/>
+                            IN1||||||||||||||       <BR/>
+                        </span>             
+                    </div>
+                </div>
+            <div class="row spacer">
+                <div class="col-lg-1 col-offset-md-2">
+                    <button type="button" class="btn btn-primary" id="btn-send-casenet">Send</button>
+                </div>
+            </div>
+            <div class="row spacer" id="progressRow" style="display: none">
+                <div class="col-lg-10 col-md-offset-1">
+                    <span style="text-align: center">Sending message to TruCare</span>
+                    <div class="progress" style="display: block">
+                        <div id="progress-bar-send" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="responseDiv" style="display: none">
+                <div class="row spacer">
+                    <div class="col-lg-10 col-md-offset-1">
+                    <p>TruCare API Response</p>
+                    <pre id="a03-response" style="display: none"> 
+{
+    "authorizationId": "cu8w1e00-1923-6484-3435-903710000003",
+    "authorizationNum": " IP0000000204",
+    "status": "PEND",
+    "state": "OPEN",
+    "version": 4,
+    "lineItems": [
+        {
+            "id": "cu8w1e00-1923-6484-3435-903710000004",
+            "lineItemNumber": 1,
+            "unitCountDetermined": 0,
+            "unitCountApproved": 0,
+            "unitCountDenied": 0
+        }
+    ]
+}
+                    </pre>
+                    <pre id="a13-response" style="display: none">Discharge Successfully Received by TruCare</pre>
+                    </div>
+                </div>
+                <div class="row spacer">
+                    <div class="col-lg-1 col-offset-md-2">
+                        <button id="admission-close-btn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/emr_demo.js"></script>
+
+</body>
+
+</html>
